@@ -11,7 +11,7 @@ https://yarikvitovsky.github.io/DiceGame/dicee.html
 1. Open the live link.  
 2. Press **Roll Dice**.  
 3. Highest die wins the round and score increments.  
-4. Refresh the page to reset scores (or add a reset button later).
+4. Refresh the page to reset scores.
 
 ---
 
@@ -21,12 +21,6 @@ https://yarikvitovsky.github.io/DiceGame/dicee.html
 - Winner banner per round
 - Lightweight & instant load
 - Responsive-friendly layout foundation
-
----
-
-## 📸 Preview
-(Add a screenshot to the repo and update the path below)
-![Screenshot](./images/screenshot.png)
 
 ---
 
@@ -71,24 +65,6 @@ cd DiceGame
 - Animated dice shake
 - Dark / Light theme toggle
 - Track win percentage
-
----
-
-## 🧪 Simple Reset (Optional Snippet)
-Add this button under the scores:
-```html
-<button id="reset">Reset Scores</button>
-```
-And in `index.js`:
-```js
-document.getElementById("reset").addEventListener("click", () => {
-  p1Score = 0;
-  p2Score = 0;
-  p1Span.textContent = 0;
-  p2Span.textContent = 0;
-  title.textContent = "Roll to play!";
-});
-```
 
 ---
 
