@@ -1,45 +1,47 @@
-function rollDice() {
-    const randomNumber1 = Math.floor(Math.random() * 6) + 1;
-    const randomNumber2 = Math.floor(Math.random() * 6) + 1;
+let p1Score = 0;
+let p2Score = 0;
 
-    document.querySelector(".img1")
-        .setAttribute("src", "images/dice" + randomNumber1 + ".png");
-    document.querySelector(".img2")
-        .setAttribute("src", "images/dice" + randomNumber2 + ".png");
-    
-    if (randomNumber1 > randomNumber2) {
-        return 1; // Player 1 wins
-    } else if (randomNumber2 > randomNumber1) {
-        return 2; // Player 2 wins
-    } else {
-        return 0; // Draw
-    }
+// Cache elements once
+const img1 = document.querySelector(".img1");
+const img2 = document.querySelector(".img2");
+const title = document.querySelector("h1");
+const p1Span = document.querySelector(".p1");
+const p2Span = document.querySelector(".p2");
+const btn = document.querySelector(".roll-button");
+
+function rollDice() {
+    const n1 = Math.floor(Math.random() * 6) + 1;
+    const n2 = Math.floor(Math.random() * 6) + 1;
+
+    img1.src = "images/dice" + n1 + ".png";
+    img2.src = "images/dice" + n2 + ".png";
+
+    if (n1 > n2) return 1;
+    if (n2 > n1) return 2;
+    return 0;
 }
 
-function updateScore(winner) {
-    let player1Score = document.querySelector(".p1").textContent;
-    let player2Score = document.querySelector(".p2").textContent;
+function applyResult(winner) {
     if (winner === 1) {
-        player1Score++;
-        document.querySelector("h1").textContent = "Player 1 Wins!";
-        document.querySelector(".p1").textContent = player1Score;
+        p1Score++;
+        p1Span.textContent = p1Score;
+        title.textContent = "Player 1 Wins!";
     } else if (winner === 2) {
-        player2Score++;
-        document.querySelector("h1").textContent = "Player 2 Wins!";
-        document.querySelector(".p2").textContent = player2Score;
-    }
-    else {
-        document.querySelector("h1").textContent = "It's a Draw!";
+        p2Score++;
+        p2Span.textContent = p2Score;
+        title.textContent = "Player 2 Wins!";
+    } else {
+        title.textContent = "It's a Draw!";
     }
 }
 
 function onRollClick() {
     const winner = rollDice();
-    updateScore(winner);
+    applyResult(winner);
 }
 
 function main() {
-    document.querySelector(".roll-button").addEventListener("click", onRollClick);
+    btn.addEventListener("click", onRollClick);
 }
 
 main();
