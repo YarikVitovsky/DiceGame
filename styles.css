@@ -45,6 +45,7 @@ img {
   font-family: 'Indie Flower', cursive;
   box-shadow: 3px 3px 5px #232931;
 }
+
 .roll-button:active {
   transform: scale(0.95);
   box-shadow: 1px 1px 3px #232931;
@@ -71,5 +72,95 @@ footer {
   color: #EEEEEE;
   text-align: center;
   font-family: 'Indie Flower', cursive;
+}
 
+/* Racing Section */
+.race-section {
+  margin: 40px auto;
+  width: 80%;
+  max-width: 800px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.flag-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 60px;
+  padding-top: 1%;
+}
+
+.flag-indicator {
+  font-size: 3rem;
+  opacity: 1;
+  transition: all 0.4s ease;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flag-indicator.show {
+  animation: wave 0.5s ease;
+}
+
+@keyframes wave {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.tracks-column {
+  flex: 1;
+}
+
+.race-track {
+  position: relative;
+  height: 80px;
+  background: linear-gradient(to right, #232931 0%, #232931 95%, #FFD700 95%, #FFD700 100%);
+  border: 3px solid #4ECCA3;
+  border-radius: 10px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.finish-line {
+  position: absolute;
+  right: 0;
+  width: 5%;
+  height: 100%;
+  background: repeating-linear-gradient(45deg,
+      #FFD700,
+      #FFD700 10px,
+      #000 10px,
+      #000 20px);
+}
+
+.car {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleX(-1);
+  font-size: 3rem;
+  transition: left 0.5s ease-out;
+}
+
+.car1 {
+  filter: hue-rotate(0deg) saturate(2);
+}
+
+.car2 {
+  filter: hue-rotate(200deg) saturate(2);
 }

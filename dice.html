@@ -25,10 +25,26 @@
 
   <button class="roll-button">Roll Dice</button>
 
-  <div class="result">
-    <p>Player 1: <span class="p p1">0</span></p>
-    <p>Player 2: <span class="p p2">0</span></p>
+  <div class="race-section">
+    <div class="flag-column">
+      <div class="flag-indicator" id="winFlag">🏁</div>
+    </div>
+    <div class="tracks-column">
+      <div class="race-track" id="track1">
+        <div class="finish-line"></div>
+        <div class="car car1">🏎️</div>
+      </div>
+      <div class="race-track" id="track2">
+        <div class="finish-line"></div>
+        <div class="car car2">🏎️</div>
+      </div>
+    </div>
   </div>
+
+  <!-- <div class="result">
+    <p>Player 1 Wins: <span class="p p1">0</span></p>
+    <p>Player 2 Wins: <span class="p p2">0</span></p>
+  </div> -->
   <script src="index.js" charset="utf-8"></script>
 </body>
 
