@@ -1,14 +1,15 @@
 let p1Wins = 0;
 let p2Wins = 0;
-let p1Position = 0;
-let p2Position = 0;
+let p1Steps = 0;
+let p2Steps = 0;
 let lastWinner = 1; // Track who won last time (start with player 1)
-const FINISH_LINE = 95; // percentage
+const TOTAL_STEPS = 10; // First to 10 steps wins
+const STEP_PERCENTAGE = 9.5; // Each step = 9.5% (10 steps = 95%)
 
 // Cache elements once
 const img1 = document.querySelector(".img1");
 const img2 = document.querySelector(".img2");
-const title = document.querySelector("h1");
+const titleText = document.querySelector(".title");
 const btn = document.querySelector(".roll-button");
 const car1 = document.querySelector(".car1");
 const car2 = document.querySelector(".car2");
@@ -26,28 +27,25 @@ function rollDice() {
     return { n1, n2 };
 }
 
-function moveCar(player, diceValue) {
-    const moveAmount = diceValue * 3; // Each dice point moves 3%
-
+function moveCar(player) {
+    // Move car by 1 step (regardless of dice value)
     if (player === 1) {
-        p1Position += moveAmount;
-        if (p1Position > FINISH_LINE) p1Position = FINISH_LINE;
-        car1.style.left = p1Position + "%";
-        return p1Position >= FINISH_LINE;
+        p1Steps++;
+        car1.style.left = (p1Steps * STEP_PERCENTAGE) + "%";
+        return p1Steps >= TOTAL_STEPS;
     } else {
-        p2Position += moveAmount;
-        if (p2Position > FINISH_LINE) p2Position = FINISH_LINE;
-        car2.style.left = p2Position + "%";
-        return p2Position >= FINISH_LINE;
+        p2Steps++;
+        car2.style.left = (p2Steps * STEP_PERCENTAGE) + "%";
+        return p2Steps >= TOTAL_STEPS;
     }
 }
 
 function resetRace() {
-    p1Position = 0;
-    p2Position = 0;
+    p1Steps = 0;
+    p2Steps = 0;
     car1.style.left = "0%";
     car2.style.left = "0%";
-    title.textContent = "Roll to Race!";
+    titleText.textContent = "First to 10 steps wins!";
 }
 
 function showFlag(player) {
@@ -70,32 +68,34 @@ function hideFlag() {
     if (n1 > n2) {
         winner = 1;
         showFlag(1);
-        const finished = moveCar(1, n1);
-        title.textContent = "Player 1 Rolled Higher!";
+        const finished = moveCar(1);
+        titleText.textContent = `Player 1 Rolled Higher!`;
 
         if (finished) {
-            title.textContent = "🏆 Player 1 Wins the Race! 🏆";
+            p1Wins++;
+            titleText.textContent = "🏆 Player 1 Wins the Race! 🏆";
             setTimeout(() => {
                 resetRace();
                 hideFlag();
-            }, 2000);
+            }, 1000);
         }
     } else if (n2 > n1) {
         winner = 2;
         showFlag(2);
-        const finished = moveCar(2, n2);
-        title.textContent = "Player 2 Rolled Higher!";
+        const finished = moveCar(2);
+        titleText.textContent = `Player 2 Rolled Higher!`;
 
         if (finished) {
-            title.textContent = "🏆 Player 2 Wins the Race! 🏆";
+            p2Wins++;
+            titleText.textContent = "🏆 Player 2 Wins the Race! 🏆";
             setTimeout(() => {
                 resetRace();
                 hideFlag();
-            }, 2000);
+            }, 1000);
         }
     } else {
         hideFlag();
-        title.textContent = "It's a Tie! Roll Again!";
+        titleText.textContent = "It's a Tie! Roll Again!";
     }
 }
 
