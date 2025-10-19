@@ -3,7 +3,7 @@
 A simple, fast, browser-based dice duel. Click the Roll Dice button to pit Player 1 vs Player 2. Each roll updates the dice faces and awards a point to the winner. Draws don’t change the score. Pure HTML / CSS / JavaScript — no frameworks.
 
 🚀 **Play it now:**  
-https://yarikvitovsky.github.io/DiceGame/dicee.html
+https://yarikvitovsky.github.io/DiceGame/dice.html
 
 ---
 
